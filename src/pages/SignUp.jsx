@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { toast } from "react-toastify"
 import { Link, useNavigate } from "react-router-dom"
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth"
 import { setDoc, doc, serverTimestamp } from "firebase/firestore"
@@ -32,7 +33,6 @@ const SignUp = () => {
       const credsCopy = {
         name,
         email,
-        password
       }
 
       credsCopy.timestamp = serverTimestamp()
@@ -43,6 +43,7 @@ const SignUp = () => {
       
     } catch(error) {
       console.log(error)
+      toast.error("Something went wrong! Please try again.")
     }
   }
 
