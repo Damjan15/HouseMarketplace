@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg";
 import visibilityIcon from "../assets/svg/visibilityIcon.svg";
+import { OAuth } from "../components";
 
 const SignIn = () => {
   const navigate = useNavigate();
@@ -77,7 +78,8 @@ const SignIn = () => {
             </div>
           </form>
 
-          {/* Google 0Auth */}
+
+          <OAuth />
 
           <Link to="/sign-up" className="registerLink">
             Sign Up Instead

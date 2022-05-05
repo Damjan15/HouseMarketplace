@@ -6,6 +6,7 @@ import { setDoc, doc, serverTimestamp } from "firebase/firestore"
 import { db } from "../config/firebase.config"
 import { ReactComponent as ArrowRightIcon } from "../assets/svg/keyboardArrowRightIcon.svg"
 import visibilityIcon from "../assets/svg/visibilityIcon.svg"
+import { OAuth } from "../components"
 
 const SignUp = () => {
   const navigate = useNavigate()
@@ -77,7 +78,8 @@ const SignUp = () => {
           </div>
         </form>
 
-        {/* Google 0Auth */}
+  
+        <OAuth />
 
         <Link to="/sign-in" className="registerLink">Sign In Instead</Link>
       </main>
