@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom"
 import { collection, getDocs, query, where, orderBy, limit } from "firebase/firestore"
 import { db } from "../config/firebase.config"
 import { toast } from "react-toastify"
-import { Spinner } from "../components"
+import { Spinner, ListingItem } from "../components"
 
 const Category = () => {
     const params = useParams()
@@ -49,7 +49,7 @@ const Category = () => {
             </p>
         </header>
 
-        {/* { loading ? <Spinner /> : listings && listings.length > 0 ? <></> : <p>No listings for {params.categoryName}</p>} */}
+
         {
             loading ? (
                 <Spinner />
@@ -57,7 +57,9 @@ const Category = () => {
                 <>
                     <main>
                         <ul className="categoryListings">
-                            { listings.map((listing) => <h3>{listing.data.name}</h3>)}
+                            { listings.map((listing) => (
+                                <ListingItem key={listing.id} listing={listing.data} />
+                            ))}
                         </ul>
                     </main>
                 </>
