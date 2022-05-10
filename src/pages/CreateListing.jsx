@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 import { db } from "../config/firebase.config";
@@ -123,6 +124,20 @@ const CreateListing = () => {
       toast.error('Images not uploaded')
       return
     })
+
+    const formDataCopy = {
+      ...formData,
+      imgUrls,
+      timestamp: serverTimestamp()
+    }
+
+    delete formDataCopy.images
+    !formDataCopy.offer && delete formDataCopy.discountedPrice
+
+    // Save to database
+    const docRef = await addDoc(collection(db, 'listings'), formDataCopy)
+    toast.success('Listing saved');
+    navigate(`/category/${formDataCopy.type}/${docRef.id}`);
   };
 
   const onMutate = (e) => {
