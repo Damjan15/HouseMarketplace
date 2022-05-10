@@ -1,9 +1,11 @@
 import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { getAuth, updateProfile } from "firebase/auth"
 import { doc, updateDoc } from "firebase/firestore"
 import { db } from "../config/firebase.config"
 import { toast } from "react-toastify"
+import arrowRight from "../assets/svg/keyboardArrowRightIcon.svg"
+import homeIcon from "../assets/svg/homeIcon.svg"
 
 const Profile = () => {
   const auth = getAuth()
@@ -60,6 +62,12 @@ const Profile = () => {
           <input type="text" className={!changeDetails ? 'profileEmail' : 'profileEmailActive'} disabled={!changeDetails} value={email || ''} onChange={(e) => setEmail(e.target.value)} />
         </form>
       </div>
+
+      <Link to="/create-listing" className="createListing">
+        <img src={homeIcon} alt="Home" />
+        <p>Sell or rent your home</p>
+        <img src={arrowRight} alt="Arrow Right" />
+      </Link>
     </main>
   </div>
 }
