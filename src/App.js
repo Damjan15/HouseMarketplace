@@ -12,7 +12,8 @@ import {
   SignUp,
   ForgotPassword,
   CreateListing,
-  Listing
+  Listing,
+  Contact
 } from "./pages";
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/create-listing" element={<CreateListing />} />
+          <Route path="/contact/:landlordId" element={<Contact />} />
         </Routes>
         <Navbar />
       </Router>
